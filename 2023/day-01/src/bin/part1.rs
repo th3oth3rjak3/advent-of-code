@@ -14,11 +14,13 @@ fn calculate(input: &str) -> usize {
                 .chars()
                 .find(|character| character.is_numeric())
                 .expect("There should be at least one digit.");
+            
             let last_digit = line
                 .chars()
                 .rev()
                 .find(|character| character.is_numeric())
                 .expect("There should be at least one digit.");
+            
             format!("{}{}", first_digit, last_digit)
         })
         .into_iter()

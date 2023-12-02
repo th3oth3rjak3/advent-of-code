@@ -1,11 +1,11 @@
 fn main() {
     let day_info = include_str!("./input/day_info.txt");
-    let input = include_str!("./input/part1.txt");
+    let input = include_str!("./input/part2.txt");
     let result = calculate(input);
     print!("{0}, part 2 result: '{1}'", day_info, result)
 }
 
-#[derive(Eq, PartialEq, Debug, Clone)]
+#[derive(Eq, PartialEq, Debug)]
 struct Digit {
     index: usize,
     value: usize,
@@ -70,7 +70,7 @@ fn get_first_numeric_word(line: &str) -> Option<Digit> {
 
     for (i, number) in NUMERIC_WORDS.iter().enumerate() {
         match line.find(number) {
-            Some(idx) => match digit.clone() {
+            Some(idx) => match &digit {
                 Some(value) => {
                     if idx < value.index {
                         digit = Some(Digit {
@@ -168,6 +168,13 @@ mod tests {
         let input = include_str!("./input/part2_sample_input.txt");
         let result = calculate(input);
         assert_eq!(result, 281)
+    }
+
+    #[test]
+    fn input_should_be_correct() {
+        let input = include_str!("./input/part2.txt");
+        let result = calculate(input);
+        assert_eq!(result, 55218)
     }
 
     #[test]
